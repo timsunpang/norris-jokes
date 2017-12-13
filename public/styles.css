@@ -1,0 +1,271 @@
+/* CSS RESET */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+input, button {
+  border: none;
+}
+
+input:focus, textarea:focus, button:focus {
+  outline: none;
+}
+
+/*==============================*/
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+.splash-layer {
+  height: 300px;
+}
+
+.splash-container {
+  width: 49%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.splash-container > h1 {
+  margin-top: 108px;
+  font-size: 80px;
+  font-family: 'Vollkorn SC', serif;
+  z-index: 10;
+}
+
+.splash-img {
+  float: left;
+  max-height: 100%;
+}
+
+.header {
+  height: 45px;
+  width: 100%;
+  background: #2f2f2f;
+  position: static;
+  box-sizing: border-box;
+}
+
+.search-bar-container {
+  width: 30%;
+	min-width: 300px;
+  margin: 0 38%;
+	position: absolute;
+  padding: 10px 0;
+}
+
+.button-container {
+	width: 40%;
+	float: left;
+}
+
+.button-container > button {
+  margin-right: 5%;
+	min-width: 50px;
+  height: 24px;
+	/*width: 45%;*/
+  color: #7b7b7b;
+  background: white;
+}
+
+.button-container > button:hover {
+  cursor: pointer;
+  color: white;
+  background: #7b7b7b;
+}
+
+.search-bar {
+  width: 50%;
+  height: 24px;
+  border-radius: 4px;
+  margin: 0 2.5%;
+	float: left;
+}
+
+.arrow-down, .arrow-up {
+	left: 50%;
+	position: absolute;
+	top: 17px;
+}
+
+.arrow-down:hover, .arrow-up:hover {
+	cursor: pointer;
+}
+
+.filter-window {
+	position: absolute;
+	width: 75%;
+	background: #fbfbfb;
+	top: 40px;
+	left: 15px;
+	border: 1px solid #dadada;
+	-webkit-box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+	-moz-box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+	box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+	z-index: 101;
+}
+
+.filter-window-wrapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	/*background: rgba(0, 0, 0, .2);*/
+}
+
+.category, .category-header {
+	font-size: 16px;
+	padding: 10px;
+  border-top: 1px solid #cecece;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.33);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.33);
+	box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.33);
+}
+
+.category-header {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.category {
+	padding-left: 20px;
+}
+
+.category.odd {
+	background: #dadada;
+}
+
+.category.even  {
+	background: #e8e8e8;
+}
+
+.category.selected {
+	background: #2f2f2f;
+	color: white;
+}
+
+.main-content-container {
+  /*padding-top: 45px;*/
+}
+.jokes-list-container {
+  padding-top: 45px;
+  background: #f1f1f1;
+  min-height: 400px;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+
+.joke-item {
+  width: 80%;
+  font-size: 18px;
+  background: #fdfdfd;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 25px auto;
+  text-align: center;
+  line-height: 1.5em;
+  -webkit-box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+  -moz-box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+  box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
+}
+
+.footer {
+  margin-top: -100px;
+  height: 100px;
+  background: #2f2f2f;
+  /*position: fixed;*/
+  box-sizing: border-box;
+}
+
+@media(max-width: 1241px) {
+  .splash-container {
+    width: 90%;
+  }
+
+  .search-bar-container {
+    width: 70%;
+		margin: 0 16%;
+  }
+
+  /*.header {
+    height: 60px;
+  }*/
+}
+
+@media(max-width: 700px) {
+  .splash-layer {
+    height: 150px;
+  }
+
+  .splash-container > h1 {
+    font-size: 40px;
+    margin-top: 50px;
+  }
+
+  .splash-img {
+    float: left;
+    max-height: 150px;
+  }
+
+  .joke-item {
+    width: 75%;
+    font-size: 16px;
+  }
+
+	.search-bar-container {
+		width: 100%;
+		margin: 0 auto;
+	}
+}
