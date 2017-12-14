@@ -16,7 +16,7 @@ export const fetchJokes = (options = {}) => {
 }
 
 export const fetchJokeCategories = () => {
-  return fetch('http://api.icndb.com/categories');
+  return fetch('https://api.icndb.com/categories');
 }
 
 export const fetchRandomJoke = (options = {}) => {
@@ -33,5 +33,5 @@ export const fetchRandomJoke = (options = {}) => {
     optionStr += `&limitTo=[${categories}]`;
   }
 
-  return fetch('http://api.icndb.com/jokes/random');
+  return fetch('https://api.icndb.com/jokes/random');
 }
