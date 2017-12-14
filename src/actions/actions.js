@@ -1,7 +1,7 @@
 import * as APIUtil from '../util/apiUtil';
 
 export const RECEIVE_ALL_JOKES = 'RECEIVE_ALL_JOKES';
-export const RECEIVE_RANDOM_JOKE = 'RECEIVE_RANDOM_JOKE';
+export const RECEIVE_JOKE = 'RECEIVE_JOKE';
 export const RECEIVE_JOKE_CATEGORIES = 'RECEIVE_JOKE_CATEGORIES';
 export const RECEIVE_FILTERED_JOKES = 'RECEIVE_FILTERED_JOKES';
 export const FILTER_JOKES = 'FILTER_JOKES';
@@ -18,8 +18,8 @@ export const receiveAllJokes = jokes => ({
   jokes
 })
 
-export const receiveRandomJoke = joke => ({
-  type: RECEIVE_RANDOM_JOKE,
+export const receiveJoke = joke => ({
+  type: RECEIVE_JOKE,
   jokes: [joke]
 })
 
@@ -130,21 +130,28 @@ export const fetchRandomJoke = options => (dispatch, getState) => {
   if (getState().jokes.store.length) {
     const jokeStore = getState().jokes.store;
     let randomJoke = jokeStore[Math.floor(Math.random() * jokeStore.length)]
-    console.log(Math.floor(Math.random() * jokeStore.length));
-    return dispatch(receiveRandomJoke(randomJoke))
+    return dispatch(receiveJoke(randomJoke))
   } else {
     return dispatch(fetchJokes())
     .then(() => dispatch(fetchRandomJoke()));
   }
-
-  // APIUtil.fetchRandomJoke(options)
-  // .then(response => response.json())
-  // .then(joke => {
-  //   console.log(joke.value)
-  //   return dispatch(receiveRandomJoke(joke.value))
-  // }
-  // )
 };
+
+export const getSpecificJoke = jokeID => (dispatch, getState) => {
+  console.log("GET SPECIFIC JOKE", jokeID)
+  if (!getState().jokes.store.length) {
+    return dispatch(fetchJokes())
+      .then(() => (dispatch(getSpecificJoke(jokeID))))
+  }
+
+  let jokes = getState().jokes.store;
+  jokeID -= 1;
+  if (typeof jokeID !== "number" || jokeID < 0 || jokeID >= jokes.length) {
+    return dispatch(receiveJoke([]));
+  }
+
+  return dispatch(receiveJoke(jokes[jokeID]));
+}
 
 export const fetchJokeCategories = () => (dispatch, getState) => {
   if (getState().categories.store.length) {

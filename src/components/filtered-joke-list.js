@@ -11,11 +11,10 @@ import React, { Component } from 'react'
 class FilteredJokeList extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.filterJokesByCategory = this.props.filterJokesByCategory.bind(this);
-    this.props.history.listen((location, action) => {
-      console.log(location, action)
-    })
+    // this.props.history.listen((location, action) => {
+    //   console.log(location, action)
+    // })
   }
 
 

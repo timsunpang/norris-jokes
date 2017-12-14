@@ -3,42 +3,26 @@ import React, { Component } from 'react';
 class JokeList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      jokes: []
-    }
-    // this.jokesDisplay = this.jokesDisplay.bind(this);
+    this.fetchJokes = this.props.fetchJokes.bind(this);
+    this.listJokes = this.listJokes.bind(this);
+    this.props.history.listen((location, action) => {
+      if (location.pathname === "/all") {
+        this.props.fetchJokes();
+      }
+    })
   }
 
-  // componentDidMount() {
-  //   fetch('https://api.icndb.com/jokes?escape=javascript')
-  //     .then(response => response.json())
-  //     .then(results => {
-  //       console.log(results)
-  //       this.setState({ jokes: results.value })})
-  //     .catch(err => console.log(err))
-  // }
-  //
-  // jokesDisplay() {
-  //   if (this.state.jokes) {
-  //     return this.state.jokes.map(joke => (
-  //         <li key={joke.id}>
-  //           {joke.joke}
-  //           {joke.categories.length ? <span> Tags: {joke.categories.join(', ')}</span> : null}
-  //         </li>
-  //       )
-  //     )
-  //   }
-  // }
-  //
-  // jokeCount() {
-  //   return <h2>Count: {this.state.jokes.length}</h2>;
-  // }
+  listJokes() {
+    return this.props.jokes.jokes.map((joke, idx) => (
+       <div className="joke-item" key={idx}>{joke.joke}</div>
+    ))
+  }
 
   render() {
     return (
-      <div>
-        Jokelist
-      </div>
+        <div className="jokes-list-container">
+          {this.listJokes()}
+        </div>
     );
   }
 }

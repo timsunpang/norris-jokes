@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import {
   RECEIVE_ALL_JOKES,
-  RECEIVE_RANDOM_JOKE,
+  RECEIVE_JOKE,
   RECEIVE_FILTERED_JOKES,
 } from '../actions/actions';
 
@@ -31,8 +31,8 @@ const JokeReducer = (state = defaultState, action) => {
         jokes = jokeStore;
       }
       return {...state, jokes, store: jokeStore};
-    case RECEIVE_RANDOM_JOKE:
-      console.log(RECEIVE_RANDOM_JOKE)
+    case RECEIVE_JOKE:
+      console.log(RECEIVE_JOKE)
       return {...state, jokes: action.jokes, filteredJokes: action.jokes};
     case RECEIVE_FILTERED_JOKES:
       return {...state, filteredJokes: action.jokes, jokes: action.jokes};

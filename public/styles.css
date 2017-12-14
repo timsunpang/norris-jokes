@@ -172,6 +172,10 @@ body {
 	box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.33);
 }
 
+.category:hover {
+  cursor: pointer;
+}
+
 .category-header {
 	font-weight: bold;
 	font-size: 14px;

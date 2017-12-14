@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import FilterWindowContainer from './filter-window-container';
 import { ConnectedRouter } from 'react-router-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 // import JokeList from './components/joke-list';
 import JokeListContainer from './joke-list-container';
 import FilteredJokeListContainer from './filtered-joke-list-container';
-import Joke from './joke';
+import JokeContainer from './joke-container';
 
 export const history = createHistory()
 
@@ -31,17 +31,7 @@ export class JokeIndex extends Component {
 
   componentDidMount() {
     console.log('mounted!')
-    this.fetchJokes();
-  }
-
-  listJokes() {
-    console.log(this.props.jokes)
-    return this.props.jokes.jokes.map((joke, idx) => {
-      // console.log(joke);
-      // if (joke.visible) {
-        return <div className="joke-item" key={idx}>{joke.joke}</div>
-      // }
-    })
+    // this.fetchJokes();
   }
 
   search(e) {
@@ -76,7 +66,7 @@ export class JokeIndex extends Component {
           <div className="search-bar-container">
               <input ref={(input) => {this.searchInput = input}} onChange={this.search} className="search-bar" type="text" placeholder="search"/>
               <div className="button-container">
-                <button onClick={() => {this.push("/random")}}>Random</button>
+                <button onClick={() => {this.push("/joke/random")}}>Random</button>
                 <button onClick={() => {this.push("/all")}}>All</button>
               </div>
               {filterWindowToggleDisplay}
@@ -85,15 +75,15 @@ export class JokeIndex extends Component {
         </div>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route exact path="/" component={Joke}/>
+            <Route exact path="/" render={() => (
+              <Redirect to='/joke/random' />
+            )}/>
             <Route exact path="/category/:categoryID(\d+)" component={FilteredJokeListContainer}/>
             <Route exact path="/all" component={JokeListContainer}/>
-            <Route exact path="/random" component={Joke}/>
+            <Route exact path="/joke/random" component={JokeContainer}/>
+            <Route exact path="/joke/:jokeID(\d+)" component={JokeContainer}/>
           </Switch>
         </ConnectedRouter>
-        <div className="jokes-list-container">
-          {this.listJokes()}
-        </div>
         <div className="footer">
         </div>
     </div>
