@@ -4,7 +4,6 @@ import FilterWindowContainer from './filter-window-container';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
-// import JokeList from './components/joke-list';
 import JokeListContainer from './joke-list-container';
 import FilteredJokeListContainer from './filtered-joke-list-container';
 import JokeContainer from './joke-container';
@@ -19,10 +18,8 @@ export class JokeIndex extends Component {
     }
     this.fetchRandomJoke = this.props.fetchRandomJoke.bind(this);
     this.fetchJokes = this.props.fetchJokes.bind(this);
-    // this.searchJokes = this.props.searchJokes.bind(this);
-    this.searchJokes = _.debounce(this.props.searchJokes.bind(this), 200);
     // Add debounce to prevent overloading redux with search functionality
-    // this.search = _.debounce(this.search.bind(this), 200);
+    this.searchJokes = _.debounce(this.props.searchJokes.bind(this), 200);
     this.search = this.search.bind(this);
     this.toggleFilterWindow = this.toggleFilterWindow.bind(this);
     this.push = this.props.push.bind(this);
@@ -49,7 +46,7 @@ export class JokeIndex extends Component {
     return (
       <div>
         <div className="splash-layer">
-          <div className="splash-container">
+          <div className="splash-container" onClick={()=>{this.push("/")}}>
             <img className="splash-img" src="/norris-logo.jpg"></img>
             <h1>Norris Jokes</h1>
           </div>
