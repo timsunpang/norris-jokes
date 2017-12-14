@@ -14,7 +14,6 @@ const CategoryReducer = (state = defaultState, action) => {
 
   switch(action.type) {
     case RECEIVE_JOKE_CATEGORIES:
-      console.log("STATE: ", state)
       let categories, store;
       if (!state.store.length) {
         categories = action.categories;
@@ -23,7 +22,6 @@ const CategoryReducer = (state = defaultState, action) => {
         store = state.store;
         categories = store;
       }
-      console.log(RECEIVE_JOKE_CATEGORIES, action.categories)
       return {...state, store};
     default:
       return state;

@@ -1,5 +1,4 @@
 export const fetchJokes = (options = {}) => {
-  console.log("CALLING API FOR JOKES")
   let optionStr = '';
 
   if (options['firstName']) {
@@ -17,7 +16,6 @@ export const fetchJokes = (options = {}) => {
 }
 
 export const fetchJokeCategories = () => {
-  console.log("CALLING API FOR CATEGORIES")
   return fetch('http://api.icndb.com/categories');
 }
 

@@ -11,15 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
       jokes: [],
       query: '',
       store: [],
-      filteredJokes: []
+      filteredJokes: [],
+      isFetching: false
     },
     categories: {
       store: [],
-      selectedCategories: []
+      selectedCategories: [],
+      isFetching: false
     }
   };
   let store = configureStore(preloadedState);
-  store.subscribe(() => {console.log(store.getState())});
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
   registerServiceWorker()
 })

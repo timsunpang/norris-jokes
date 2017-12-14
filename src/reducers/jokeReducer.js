@@ -3,6 +3,7 @@ import {
   RECEIVE_ALL_JOKES,
   RECEIVE_JOKE,
   RECEIVE_FILTERED_JOKES,
+  RECEIVE_SEARCH_MATCHES
 } from '../actions/actions';
 
 const defaultState = {
@@ -20,9 +21,7 @@ const defaultState = {
 const JokeReducer = (state = defaultState, action) => {
   switch(action.type) {
     case RECEIVE_ALL_JOKES:
-      console.log(RECEIVE_ALL_JOKES);
       let jokes, jokeStore;
-      console.log(state);
       if (!state.store.length) {
         jokes = action.jokes;
         jokeStore = jokes;
@@ -30,12 +29,17 @@ const JokeReducer = (state = defaultState, action) => {
         jokeStore = state.store;
         jokes = jokeStore;
       }
-      return {...state, jokes, store: jokeStore};
+      return {...state, jokes, store: jokeStore, filteredJokes: jokeStore};
     case RECEIVE_JOKE:
-      console.log(RECEIVE_JOKE)
-      return {...state, jokes: action.jokes, filteredJokes: action.jokes};
+      if (action.jokes) {
+        return {...state, jokes: [action.jokes], filteredJokes: [action.jokes]};
+      } else {
+        return {...state, jokes: [], filteredJokes: []};
+      }
     case RECEIVE_FILTERED_JOKES:
       return {...state, filteredJokes: action.jokes, jokes: action.jokes};
+    case RECEIVE_SEARCH_MATCHES:
+      return {...state, jokes: action.jokes}
     default:
       return state;
   }

@@ -14,7 +14,6 @@ export const history = createHistory()
 export class JokeIndex extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       filterWindowOpen: false
     }
@@ -29,16 +28,9 @@ export class JokeIndex extends Component {
     this.push = this.props.push.bind(this);
   }
 
-  componentDidMount() {
-    console.log('mounted!')
-    // this.fetchJokes();
-  }
-
   search(e) {
     if (this.searchInput.value.length) {
       this.searchJokes(this.searchInput.value);
-    } else {
-      this.fetchJokes();
     }
   }
 
@@ -82,6 +74,9 @@ export class JokeIndex extends Component {
             <Route exact path="/all" component={JokeListContainer}/>
             <Route exact path="/joke/random" component={JokeContainer}/>
             <Route exact path="/joke/:jokeID(\d+)" component={JokeContainer}/>
+            <Route exact path="*" render={() => (
+              <Redirect to='/joke/random' />
+            )}/>
           </Switch>
         </ConnectedRouter>
         <div className="footer">
@@ -90,5 +85,3 @@ export class JokeIndex extends Component {
     );
   }
 }
-
-// export default JokeIndex;

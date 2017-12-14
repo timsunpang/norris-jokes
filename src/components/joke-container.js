@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { getSpecificJoke, fetchRandomJoke } from '../actions/actions';
+import { fetchSpecificJoke, fetchRandomJoke } from '../actions/actions';
 import Joke from './joke';
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getSpecificJoke: (jokeID) => dispatch(getSpecificJoke(jokeID)),
+  getSpecificJoke: (jokeID) => dispatch(fetchSpecificJoke(jokeID)),
   fetchRandomJoke: () => dispatch(fetchRandomJoke())
 })
 

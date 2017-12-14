@@ -6,7 +6,6 @@ class FilterWindow extends Component {
     this.state = {
       selectedCategoryIdx: null
     }
-    console.log(this.props)
     this.toggleFilterWindow = this.props.toggleFilterWindow.bind(this);
     this.fetchJokeCategories = this.props.fetchJokeCategories.bind(this);
     this.selectCategory = this.selectCategory.bind(this);
@@ -18,7 +17,6 @@ class FilterWindow extends Component {
   }
 
   renderCategories() {
-    console.log(this.props)
     return this.props.categories.store.map((category, idx) => (
       <div
         className={
@@ -34,7 +32,6 @@ class FilterWindow extends Component {
   }
 
   selectCategory(category, idx) {
-    console.log(category)
     if (idx !== this.state.selectedCategoryIdx) {
       this.setState({
         selectedCategoryIdx: idx

@@ -128,10 +128,11 @@ body {
   border-radius: 4px;
   margin: 0 2.5%;
 	float: left;
+	padding: 0 5px;
 }
 
 .arrow-down, .arrow-up {
-	left: 50%;
+	left: 51%;
 	position: absolute;
 	top: 17px;
 }
@@ -225,6 +226,23 @@ body {
   box-shadow: 4px 4px 11px 0px rgba(0,0,0,0.34);
 }
 
+.joke-item:hover {
+	cursor: pointer;
+}
+
+.joke-item-categories {
+	margin: 20px 0 0 78%;
+	font-size: 15px;
+	font-weight: bold;
+	width: 30%;
+}
+
+.no-jokes-error {
+	margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+}
+
 .footer {
   margin-top: -100px;
   height: 100px;
@@ -243,9 +261,9 @@ body {
 		margin: 0 16%;
   }
 
-  /*.header {
-    height: 60px;
-  }*/
+	.joke-item-categories {
+		margin: 20px 0 0 70%;
+	}
 }
 
 @media(max-width: 700px) {
@@ -271,5 +289,9 @@ body {
 	.search-bar-container {
 		width: 100%;
 		margin: 0 auto;
+	}
+
+	.joke-item-categories {
+		margin: 20px 0 0 65%;
 	}
 }

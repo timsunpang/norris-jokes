@@ -5,17 +5,31 @@ class JokeList extends Component {
     super(props);
     this.fetchJokes = this.props.fetchJokes.bind(this);
     this.listJokes = this.listJokes.bind(this);
-    this.props.history.listen((location, action) => {
-      if (location.pathname === "/all") {
-        this.props.fetchJokes();
-      }
-    })
+    this.push = this.props.push.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchJokes();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location.key !== nextProps.location.key) {
+      this.fetchJokes();
+    }
   }
 
   listJokes() {
-    return this.props.jokes.jokes.map((joke, idx) => (
-       <div className="joke-item" key={idx}>{joke.joke}</div>
-    ))
+    if (this.props.jokes.jokes.length) {
+      return this.props.jokes.jokes.map((joke, idx) => (
+        <div className="joke-item" key={idx} onClick={()=>{this.push('/joke/' + (idx + 1))}}>{joke.joke}</div>
+      ))
+    } else {
+      return (
+        <div className="no-jokes-error">
+          No jokes were found.
+        </div>
+      )
+    }
   }
 
   render() {

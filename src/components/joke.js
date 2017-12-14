@@ -3,44 +3,54 @@ import React, { Component } from 'react';
 class Joke extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
     this.listJokes = this.listJokes.bind(this);
     this.getSpecificJoke = this.props.getSpecificJoke.bind(this);
     this.fetchRandomJoke = this.props.fetchRandomJoke.bind(this);
-    // this.determineAction = this.determineAction.bind(this);
-    // this.determineAction()
-  // 	if (location.pathname === "/all") {
-		// this.getSpecificJoke(this.props.match.params.jokeID);
-	this.props.history.listen((location, action) => {
-		console.log(location)
-	  	if (location.pathname === "/joke/random") {
-	  		this.fetchRandomJoke();
-	  	} else {
-	  		console.log("get specific")
-	    	this.getSpecificJoke(this.props.match.params.jokeID);
-	    }
-    })
+    this.determineAction = this.determineAction.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  // 	console.log(this.props)
-  // 	if (nextProps.location.pathname !== this.props.location.pathname) {
-  // 		this.determineAction();
-  // 	}
-  // }
+  componentDidMount() {
+    this.determineAction(this.props.location.pathname);
+  }
 
-  // determineAction() {
-  // 	if (this.props.location.pathname === "/joke/random") {
-  // 		this.fetchRandomJoke();
-  // 	} else {
-  //   	this.getSpecificJoke(this.props.match.params.jokeID);
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+  	if (this.props.location.key !== nextProps.location.key) {
+      this.determineAction(nextProps.location.pathname);
+    }
+  }
+
+  determineAction(pathname) {
+  	if (pathname === "/joke/random") {
+  		this.fetchRandomJoke();
+  	} else {
+    	this.getSpecificJoke(this.props.match.params.jokeID);
+    }
+  }
 
   listJokes() {
-    return this.props.jokes.jokes.map((joke, idx) => (
-       <div className="joke-item" key={idx}>{joke.joke}</div>
-    ))
+    if (this.props.jokes.jokes.length) {
+      return this.props.jokes.jokes.map((joke, jokeIdx) => (
+        <div className="joke-item" key={jokeIdx}>
+          {joke.joke}
+          <div className="joke-item-categories">
+            { "Categories: "}
+            {
+              (joke.categories.length ?
+                joke.categories.map((category, categoryIdx) => (
+                  <span className="joke-item-category" key={categoryIdx}>{category}</span>
+                ))
+                : "None")
+              }
+            </div>
+          </div>
+        ))
+    } else {
+      return (
+        <div className="no-jokes-error">
+          No jokes were found.
+        </div>
+      )
+    }
   }
 
   render() {
